@@ -2609,7 +2609,9 @@ Error Main::setup(const char *execpath, int argc, char *argv[], bool p_second_ph
 			rendering_driver_source = OS::RenderingSource::RENDERING_SOURCE_PROJECT_SETTING;
 		} else {
 			rendering_driver = GLOBAL_GET("rendering/rendering_device/driver");
-			rendering_driver_source = OS::RenderingSource::RENDERING_SOURCE_PROJECT_SETTING;
+			if (rendering_driver == "opengl3" || rendering_driver == "opengl3_angle" || rendering_driver == "opengl3_es") {
+				rendering_method = "gl_compatibility";
+			}
 		}
 	}
 
